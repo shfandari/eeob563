@@ -1,0 +1,106 @@
+\documentclass[11pt]{paper}
+
+\usepackage[pdftex]{graphicx}
+\usepackage[usenames, dvipsnames]{color}
+
+\usepackage{geometry}
+\geometry{letterpaper, left=1in, top=1in, right=1in, bottom=1in, includehead=true}
+
+
+\setlength\parindent{0pt}			% you don't like your paragraphs indented
+\setlength{\parskip}{1em plus4mm minus3mm}	% you like extra space between paragraphs
+
+% commenting: Dr. Dorman's hl and notes are in violet; SA's are in yellow
+\usepackage[obeyFinal,colorinlistoftodos]{todonotes}
+\usepackage{soul}
+\newcommand{\kdnote}[2][]{%
+	\todo[color=blue!40, caption={#2}, size=\footnotesize, #1]{{\renewcommand{\baselinestretch}{0.5}\selectfont#2\par}}%
+}
+\newcommand{\kdhl}[2]{%
+	\hl{#1}\todo[color=blue!40, caption={#2}, size=\footnotesize]{{\renewcommand{\baselinestretch}{0.5}\selectfont#2\par}}%
+}
+\newcommand{\sanote}[2][]{%
+	\todo[color=yellow!40, caption={#2}, size=\footnotesize, #1]{{\renewcommand{\baselinestretch}{0.5}\selectfont#2\par}}%
+}
+\newcommand{\sahl}[2]{%
+	\hl{#1}\todo[color=yellow!40, caption={#2}, size=\footnotesize]{{\renewcommand{\baselinestretch}{0.5}\selectfont#2\par}}%
+}
+%commenting on equations (orange)
+\usepackage{marginnote}
+\makeatletter
+\renewcommand{\@todonotes@drawMarginNoteWithLine}{%
+	\begin{tikzpicture}[remember picture, overlay, baseline=-0.75ex]%
+	\definecolor{orange}{rgb}{1,0.5,0}%
+	%\draw node[draw=black, fill=yellow, text width = 3cm] (inNote)%
+	%{#1};%
+	\node [coordinate] (inText) {};%
+	\end{tikzpicture}%
+	\marginnote[{% Draw note in left margin
+		\@todonotes@drawMarginNote%
+		\@todonotes@drawLineToLeftMargin%
+	}]{% Draw note in right margin
+		\@todonotes@drawMarginNote%
+		\@todonotes@drawLineToRightMargin%
+	}%
+}
+
+\usepackage{rotating}
+\usepackage{amsmath}
+\usepackage{bbold}
+\usepackage{array}
+\usepackage{courier}
+
+\usepackage{titletoc}
+\usepackage{hyperref}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@makechapterhead}{50\p@}{0pt}{}{}
+\patchcmd{\@makeschapterhead}{50\p@}{0pt}{}{}
+\makeatother
+
+%%% Control how nucleotides appear throughout text and math
+\newcommand{\dna}[1]{\ensuremath{\textnormal{#1}}}
+\newcommand{\nA}{\dna{A}}
+\newcommand{\nC}{\dna{C}}
+\newcommand{\nG}{\dna{G}}
+\newcommand{\nT}{\dna{T}}
+\newcommand{\nR}{\dna{R}}
+\newcommand{\nY}{\dna{Y}}
+\newcommand{\nN}{\dna{N}}
+\newcommand{\nP}{\dna{P}}       % special: primer nucleotide
+\newcommand{\dnalist}{\ensuremath{\dna{A},\dna{C},\dna{G},\dna{T}}}
+\newcommand{\dnaset}{\{\dnalist\}}
+
+
+% bibliography
+%\usepackage{natbib}
+%\bibliographystyle{apa}
+\usepackage[backend=biber,
+style=numeric-comp]{biblatex}
+\addbibresource{clt.bib}
+
+%\usepackage[all]{nowidow}	% what for?
+\DeclareGraphicsExtensions{.jpg,.pdf,.mps,.png}
+\newcommand{\source}[1]{\hfill Source: {#1}}
+
+\pagenumbering{arabic}
+
+\title{Phylogenetics Tree of Ebola Viruses}
+
+\begin{document}
+\maketitle
+
+\hypersetup{colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue,bookmarksnumbered=true,pdfview=FitB}
+
+\tableofcontents
+
+\section{Background}
+
+\section{Pipeline}
+
+
+
+\printbibliography
+
+\end{document}
+
